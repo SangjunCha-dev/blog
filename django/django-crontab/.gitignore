@@ -1,0 +1,8 @@
+# venv
+venv/
+
+# log
+log/
+
+# temp
+__pycache__/

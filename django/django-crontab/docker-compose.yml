@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: django-crontab
+    volumes:
+      - ./log/:/app/log/
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_DEBUG=True
+      - TZ=Asia/Seoul
+    restart: always
+    command: bash -c "
+      service cron start &&
+      python3 manage.py crontab add &&
+      (yes | python3 manage.py makemigrations) &&
+      python3 manage.py migrate &&
+      python3 manage.py runserver"
