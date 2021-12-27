@@ -21,10 +21,15 @@ OS : Windows10
 
 # execute
 
-```bash
-(venv)> python manage.py crontab add
+- linux local
 
-(venv)> python mangge.py runserver
-or 
-(venv)> 
-```
+    ```bash
+    (venv)> python manage.py crontab add
+    (venv)> python mangge.py runserver
+    ```
+
+- docker
+
+    ```bash
+    (venv)> docker-compose -f docker-compose.yml up -d --build
+    ```
