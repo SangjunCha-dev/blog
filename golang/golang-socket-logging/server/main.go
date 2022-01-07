@@ -42,16 +42,17 @@ func setLog() {
 }
 
 func loggingServer() {
-	l, err := net.Listen("tcp", ":"+MyConfig.ServerPort)
+	listen, err := net.Listen("tcp", ":"+MyConfig.ServerPort)
 	if err != nil {
 		log.Println(err)
 	}
-	defer l.Close()
+	defer listen.Close()
 
 	fmt.Println("Logging Server Start Port :", MyConfig.ServerPort)
+	log.Println("Logging Server Start Port :", MyConfig.ServerPort)
 
 	for {
-		conn, err := l.Accept()
+		conn, err := listen.Accept()
 		if err != nil {
 			log.Println(err)
 			continue
@@ -62,21 +63,19 @@ func loggingServer() {
 }
 
 func ConnHandler(conn net.Conn) {
-	recvBuf := make([]byte, 4096)
+	recvBuffer := make([]byte, 4096)
 	for {
-		n, err := conn.Read(recvBuf)
+		n, err := conn.Read(recvBuffer)
 		if err != nil {
-			if err == io.EOF {
+			if err != io.EOF {
 				log.Println(err)
-				return
 			}
-			log.Println(err)
 			return
 		}
-		if 0 < n {
-			data := recvBuf[:n]
-			log.Println(string(data))
 
+		if 0 < n {
+			data := recvBuffer[:n]
+			log.Println(string(data))
 		}
 	}
 }

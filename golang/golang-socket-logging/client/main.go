@@ -2,16 +2,15 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net"
 	"strconv"
 	"time"
 )
 
 func main() {
-	conn, err := net.Dial("tcp", ":3000")
+	conn, err := net.Dial("tcp", ":8010")
 	if nil != err {
-		log.Println(err)
+		fmt.Println(err)
 	}
 
 	cnt := 1

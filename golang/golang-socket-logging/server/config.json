@@ -1,5 +1,5 @@
 {
 	"log_path": "log/",
 	"log_name": "adc",
-	"server_port": "3000"
+	"server_port": "8010"
 }
